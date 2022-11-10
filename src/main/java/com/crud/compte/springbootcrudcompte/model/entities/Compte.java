@@ -8,7 +8,6 @@ import java.util.Date;
 
 @Data
 @Entity
-@Builder
 @NoArgsConstructor @AllArgsConstructor @ToString
 public class Compte {
     @Id

@@ -1,6 +1,7 @@
 package com.crud.compte.springbootcrudcompte.service.implementations;
 
 
+import com.crud.compte.springbootcrudcompte.enums.TypeCompte;
 import com.crud.compte.springbootcrudcompte.model.entities.Compte;
 import com.crud.compte.springbootcrudcompte.repository.CompteRepository;
 import com.crud.compte.springbootcrudcompte.service.interfaces.CompteService;
@@ -49,15 +50,22 @@ public class CompteServiceImpl implements CompteService {
 
     @Override
     public void virement(Long codeSource, Long codeDestination, double montant) {
-        Compte c1 = compteRepository.getById(codeSource);
-        Compte c2 = compteRepository.getById(codeDestination);
-        if(c1.getSolde() > montant){
-            c1.setSolde(c1.getSolde()-montant);
-            c2.setSolde(c2.getSolde()+montant);
-            compteRepository.save(c1);
-            compteRepository.save(c2);
-        }
 
+            Optional<Compte> c1 = compteRepository.findById(codeSource);
+            Optional<Compte> c2 = compteRepository.findById(codeDestination);
+            if (c1.isPresent()){
+                if(c1.get().getSolde() > montant){
+                    c1.get().setSolde(c1.get().getSolde()-montant);
+                    c2.get().setSolde(c2.get().getSolde()+montant);
+                    compteRepository.save(c1.get());
+                    compteRepository.save(c2.get());
+                }
+            }
+    }
+
+    @Override
+    public List<Compte> findCompteByTypeCompteList(TypeCompte typeCompte) {
+        return compteRepository.findByType(typeCompte);
     }
 
 }

@@ -2,6 +2,8 @@ package com.crud.compte.springbootcrudcompte.controller.api;
 
 
 import com.crud.compte.springbootcrudcompte.controller.interfaces.CompteController;
+import com.crud.compte.springbootcrudcompte.enums.TypeCompte;
+import com.crud.compte.springbootcrudcompte.model.dto.VirementRequestDTO;
 import com.crud.compte.springbootcrudcompte.model.entities.Compte;
 import com.crud.compte.springbootcrudcompte.service.interfaces.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,11 @@ public class CompteApi implements CompteController {
     }
 
     @Override
+    public List<Compte> compteByTypeCompteList(TypeCompte type) {
+        return compteService.findCompteByTypeCompteList(type);
+    }
+
+    @Override
     public Optional<Compte> findCompte(Long code) {
         return compteService.findCompte(code);
     }
@@ -47,8 +54,8 @@ public class CompteApi implements CompteController {
     }
 
     @Override
-    public void virement(Long codeSource, Long codeDestination, double montant) {
-        compteService.virement(codeSource, codeDestination, montant);
+    public void virement(VirementRequestDTO request) {
+         compteService.virement(request.getCodeSource(), request.getCodeDestination(), request.getMontant());
     }
 
 

@@ -1,6 +1,7 @@
 package com.crud.compte.springbootcrudcompte.service.interfaces;
 
 
+import com.crud.compte.springbootcrudcompte.enums.TypeCompte;
 import com.crud.compte.springbootcrudcompte.model.entities.Compte;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface CompteService {
     void delete(Long code);
 
     void virement(Long codeSource, Long codeDestination, double montant);
+
+    List<Compte> findCompteByTypeCompteList(TypeCompte typeCompte);
 }
