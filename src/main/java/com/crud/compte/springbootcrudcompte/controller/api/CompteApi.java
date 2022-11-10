@@ -46,5 +46,10 @@ public class CompteApi implements CompteController {
         compteService.delete(code);
     }
 
+    @Override
+    public void virement(Long codeSource, Long codeDestination, double montant) {
+        compteService.virement(codeSource, codeDestination, montant);
+    }
+
 
 }

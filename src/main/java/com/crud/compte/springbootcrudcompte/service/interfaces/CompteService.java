@@ -15,4 +15,6 @@ public interface CompteService {
     Compte save(Compte compte);
 
     void delete(Long code);
+
+    void virement(Long codeSource, Long codeDestination, double montant);
 }

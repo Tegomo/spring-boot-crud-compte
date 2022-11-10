@@ -23,4 +23,7 @@ public interface CompteController {
     @DeleteMapping("/{code}")
     void delete(@PathVariable Long code);
 
+    @PostMapping("/virement")
+    void virement(@RequestBody Long codeSource, @RequestBody Long codeDestination,  @RequestBody double montant );
+
 }
