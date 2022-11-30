@@ -16,7 +16,7 @@ import java.util.List;
 public interface AccountController {
 
     @GetMapping("/users")
-    @PostAuthorize("hasAuthority('USER')")
+    //@PostAuthorize("hasAuthority('USER')")
     List<AppUser> appUsers();
 
     @PostMapping("/add/user")
